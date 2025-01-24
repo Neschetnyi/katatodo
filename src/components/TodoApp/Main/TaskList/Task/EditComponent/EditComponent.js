@@ -16,6 +16,14 @@ class EditComponent extends Component {
     this.props.togleEdit();
   };
 
+  componentDidMount() {
+    window.addEventListener("click", this.props.togleEdit, true);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("click", this.props.togleEdit, true);
+  }
+
   render() {
     console.log("editComponent props:", this.props);
     console.log("editComponent id:", this.props.id);
@@ -26,6 +34,7 @@ class EditComponent extends Component {
           value={this.state.title}
           onChange={this.onChange}
           className="edit"
+          autoFocus
         />
       </form>
     );

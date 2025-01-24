@@ -78,11 +78,7 @@ class TodoApp extends Component {
   };
 
   state = {
-    tasks: [
-      this.actions.createTask("title1"),
-      this.actions.createTask("title2"),
-      this.actions.createTask("title3"),
-    ],
+    tasks: [],
     unComplitedTasks: 0,
     viewMode: "all",
   };

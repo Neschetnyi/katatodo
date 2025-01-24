@@ -55,6 +55,20 @@ class TodoApp extends Component {
       this.setState({ viewMode });
     },
 
+    changingTitle: (id, title) => {
+      this.setState(({ tasks }) => {
+        let tempArr = [...tasks];
+        let Index = tasks.findIndex((el) => el.id === id);
+        let before = tempArr.slice(0, Index);
+        let after = tempArr.slice(Index + 1);
+        let newTask = { ...tempArr[Index], title };
+        let newArr = [...before, newTask, ...after];
+        console.log("changingTitle id: ", id);
+        console.log("changingTitle newArr: ", newArr);
+        return { tasks: newArr };
+      });
+    },
+
     viewUnComplitedTasksCount: () => {
       this.setState(({ tasks }) => {
         let unComplitedTasks = tasks.filter((el) => !el.checked);

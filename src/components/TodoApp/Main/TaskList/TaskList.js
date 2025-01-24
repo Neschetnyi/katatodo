@@ -12,12 +12,14 @@ const TaskList = ({ data, actions }) => {
         return (
           <Task
             key={id}
+            id={id}
             {...prop}
             deleteTask={() => actions.deleteTask(id)}
             togleCecked={() => actions.togleCecked(id)}
             viewUnComplitedTasksCount={() =>
               actions.viewUnComplitedTasksCount(id)
             }
+            changingTitle={actions.changingTitle}
           />
         );
       });
@@ -33,6 +35,7 @@ const TaskList = ({ data, actions }) => {
       return data.tasks.filter((task) => task.checked);
     }
   };
+
   tasksNewArr = switchArraysOnViewMode();
   renderingTasks(tasksNewArr);
   console.log("TaskList tasksNewArr", tasksNewArr);

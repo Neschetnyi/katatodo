@@ -1,6 +1,11 @@
 import React, { Component } from "react";
+import EditComponent from "./EditComponent/EditComponent";
 
 class Task extends Component {
+  state = {
+    edit: false,
+  };
+
   onChange = (e) => {
     this.props.togleCecked(e.target.id);
     this.props.viewUnComplitedTasksCount();
@@ -11,7 +16,26 @@ class Task extends Component {
     this.props.viewUnComplitedTasksCount();
   };
 
+  togleEdit = () => {
+    console.log("togleEdit");
+    this.setState({ edit: !this.state.edit });
+  };
+
   render() {
+    console.log("single task !!!!!!!", this.props);
+    let editComponent = null;
+    if (this.state.edit) {
+      editComponent = (
+        <EditComponent
+          id={this.props.id}
+          togleEdit={this.togleEdit}
+          changingTitle={this.props.changingTitle}
+        />
+      );
+    } else {
+      editComponent = null;
+    }
+
     let { checked } = this.props;
     let classNames = "";
 
@@ -21,6 +45,11 @@ class Task extends Component {
     if (checked) {
       classNames += "completed ";
     }
+
+    if (this.state.edit) {
+      classNames += "editing ";
+    }
+
     return (
       <li className={classNames}>
         <div className="view">
@@ -34,12 +63,13 @@ class Task extends Component {
             <span className="description">{this.props.title}</span>
             <span className="created">created 5 minutes ago</span>
           </label>
-          <button className="icon icon-edit"></button>
+          <button className="icon icon-edit" onClick={this.togleEdit}></button>
           <button
             className="icon icon-destroy"
             onClick={this.onDelete}
           ></button>
         </div>
+        {editComponent}
       </li>
     );
   }

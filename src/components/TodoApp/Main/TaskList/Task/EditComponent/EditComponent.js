@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 class EditComponent extends Component {
   state = {
@@ -40,5 +41,19 @@ class EditComponent extends Component {
     );
   }
 }
+
+EditComponent.defaultProps = {
+  id: 0,
+  title: "",
+  changingTitle: () => {},
+  togleEdit: () => {},
+};
+
+EditComponent.propTypes = {
+  id: PropTypes.number,
+  title: PropTypes.string,
+  changingTitle: PropTypes.func,
+  togleEdit: PropTypes.func,
+};
 
 export default EditComponent;

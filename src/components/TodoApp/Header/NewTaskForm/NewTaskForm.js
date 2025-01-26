@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 class NewTaskForm extends Component {
   state = {
@@ -34,5 +35,19 @@ class NewTaskForm extends Component {
     );
   }
 }
+
+NewTaskForm.defaultProps = {
+  actions: {
+    addTask: () => {},
+    viewUnComplitedTasksCount: () => {},
+  },
+};
+
+NewTaskForm.propTypes = {
+  actions: PropTypes.shape({
+    addTask: PropTypes.func.isRequired,
+    viewUnComplitedTasksCount: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 export default NewTaskForm;

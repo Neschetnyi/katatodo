@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import EditComponent from "./EditComponent/EditComponent";
 import Timer from "./Timer/Timer";
+import PropTypes from "prop-types";
 
 class Task extends Component {
   state = {
@@ -77,5 +78,25 @@ class Task extends Component {
     );
   }
 }
+
+Task.defaultProps = {
+  title: "Untitled Task",
+  checked: false,
+  id: 0,
+  deleteTask: () => {},
+  togleCecked: () => {},
+  viewUnComplitedTasksCount: () => {},
+  changingTitle: () => {},
+};
+
+Task.propTypes = {
+  title: PropTypes.string,
+  checked: PropTypes.bool,
+  id: PropTypes.number,
+  deleteTask: PropTypes.func,
+  togleCecked: PropTypes.func,
+  viewUnComplitedTasksCount: PropTypes.func,
+  changingTitle: PropTypes.func,
+};
 
 export default Task;

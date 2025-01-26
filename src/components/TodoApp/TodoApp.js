@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Header from "./Header/Header";
 import Main from "./Main/Main";
+import PropTypes from "prop-types";
 
 class TodoApp extends Component {
   newId = 0;
@@ -97,6 +98,18 @@ class TodoApp extends Component {
     );
   }
 }
+
+TodoApp.defaultProps = {
+  tasks: [],
+  unComplitedTasks: 0,
+  viewMode: "all",
+};
+
+TodoApp.propTypes = {
+  tasks: PropTypes.array,
+  unComplitedTasks: PropTypes.number,
+  viewMode: PropTypes.string,
+};
 
 console.log(React.createElement);
 export default TodoApp;

@@ -1,5 +1,6 @@
 import React from "react";
 import Task from "./Task/Task";
+import PropTypes from "prop-types";
 
 const TaskList = ({ data, actions }) => {
   console.log("TaskList data:", data);
@@ -40,6 +41,32 @@ const TaskList = ({ data, actions }) => {
   renderingTasks(tasksNewArr);
   console.log("TaskList tasksNewArr", tasksNewArr);
   return <ul className="todo-list">{tasksNewArr}</ul>;
+};
+
+TaskList.defaultProps = {
+  data: {
+    tasks: [],
+    viewMode: "all",
+  },
+  actions: {
+    deleteTask: () => {},
+    togleCecked: () => {},
+    viewUnComplitedTasksCount: () => {},
+    changingTitle: () => {},
+  },
+};
+
+TaskList.propTypes = {
+  data: PropTypes.shape({
+    tasks: PropTypes.array,
+    viewMode: PropTypes.string,
+  }),
+  actions: PropTypes.shape({
+    deleteTask: PropTypes.func,
+    togleCecked: PropTypes.func,
+    viewUnComplitedTasksCount: PropTypes.func,
+    changingTitle: PropTypes.func,
+  }),
 };
 
 export default TaskList;

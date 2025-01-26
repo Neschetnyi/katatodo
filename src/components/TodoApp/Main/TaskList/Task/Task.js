@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import EditComponent from "./EditComponent/EditComponent";
+import Timer from "./Timer/Timer";
 
 class Task extends Component {
   state = {
@@ -61,7 +62,9 @@ class Task extends Component {
           />
           <label>
             <span className="description">{this.props.title}</span>
-            <span className="created">created 5 minutes ago</span>
+            <span className="created">
+              <Timer />
+            </span>
           </label>
           <button className="icon icon-edit" onClick={this.togleEdit}></button>
           <button
